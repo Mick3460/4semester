@@ -81,7 +81,7 @@ const numbers  = [5, 3, 2, 7, 11, 12, 0, -20, 6];
 
 const discardedNumbers = [];
 
-
+//Reverse for loop fordi jeg læste opgaven forkert og troede jeg skulle fjerne de loggede numre 
 for (i = numbers.length-1 ; i>=0; i--){
     
     if (numbers[i] > 6 || numbers[i] < 0){ 
