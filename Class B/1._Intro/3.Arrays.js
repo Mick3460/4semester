@@ -54,11 +54,13 @@ console.log("");
 // --------------------------------------
 // Exercise 6 - Copy array
 
+// Måske brug SLICE?
+const newwArray = diet.slice(); 
 // You really like your daily diet from last exercise. Copy it to a new array called dinnerTray so you can give it to a friend.  
 const newArray = diet.map(x => x)
 console.log("Exercise 6: ",newArray);
 console.log("");
-
+ 
 // --------------------------------------
 // Exercise 7 - For loop
 
@@ -67,7 +69,7 @@ const lettersExpanded = ["a","b","c", "d", "e", "f", "g", "h"];
 // log every second char in the array starting from b
 
 console.log("Exercise 7:");
-for (i=1; i<lettersExpanded.length; i+=2){ //eller brug modulus istedet for +=2
+for (let i=1; i<lettersExpanded.length; i+=2){ //eller brug modulus istedet for +=2
     console.log(lettersExpanded[i]);
 }
 console.log("Exercise 7 over");
