@@ -14,10 +14,10 @@ console.log("");
 const friends = [];
 
 // What a lonely array. Add at least 3 friend objects to it.  
-const Jimmy = {age: "atleast 30"}
-const Mads = {zoomer: true}
-const Michael = {superiorTutor: true}
-friends.push(Jimmy,Mads,Michael)
+const jimmy = {age: "atleast 30"}
+const mads = {zoomer: true}
+const michael = {superiorTutor: true}
+friends.push(jimmy,mads,michael)
 console.log("Exercise 2: ",friends);
 
 // --------------------------------------
