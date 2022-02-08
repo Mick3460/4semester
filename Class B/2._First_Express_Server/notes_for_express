@@ -1,0 +1,36 @@
+ /*
+Når du vil starte et nyt projekt, så start ud med at opsætte din express dependency. 
+Lav en package.json fil, og indsæt {} for at gøre det til en ordentlig json fil.
+indsæt:
+    {
+        "dependencies": {
+            "express": "4.17.2"
+        }
+    }
+og skriv npm install i terminalen for at hente/installere projektets dependencies
+Dette laver automatisk en package-lock.json, som stort set kun skal kigges i af rigtige developers til at version-kontrollere fejl
+
+
+*/
+
+
+
+ //import Express
+const express = require('express')
+const app = express();
+
+// const app = require("express")()   //one liner.. dont use
+
+app.use(express.json()); // allows express-instance to parse JSON
+
+// takes an endpoint and a callback function
+app.get("/", (req, res) => { //request and response are given from express
+    res.send({message: "Hello world. Express converts this Javascript object to JSON" });
+});
+
+//todo implement a route called welcome that welcomes the client
+app.get("/welcome",(req,res) => {
+    res.send({message: "Hejsa"});
+});
+
+
