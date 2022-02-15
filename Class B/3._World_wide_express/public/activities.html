@@ -10,9 +10,11 @@
     <p id=activity>her</p>
     
     <script>
-        fetch("https://boredapi.com/api/activity", {mode: "no-cors"} )
+
+        fetch("https://boredapi.com/api/activity")
         .then(response => response.json() )
         .then(data => {
+            console.log(data);
             const activitySpan = document.getElementById("activity");
             activitySpan.innerText = data.activity;
         });
