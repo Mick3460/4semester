@@ -32,8 +32,8 @@ app.get("/beers",(req,res) => {
 //GET by id
 app.get("/beers/:beerId",(req,res) => {
     res.send(beerArray[(req.params.beerId)-1]);
-})
-
+}) // den skal laves bedre
+ 
 //POST and assign id
 app.post("/beers",(req,res) => {
     const newBeer = {id: assignId(), name: req.body.name}
