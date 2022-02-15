@@ -24,7 +24,7 @@ const discountedPhones = smartPhones.map(smartPhone => {
     return smartPhone
 });
 //console.log(discountedPhones);
-
+console.log(smartPhones);
 
 //remove phones above 4000
 const cheapPhones = smartPhones.filter(phone => phone.price <= 4000)
