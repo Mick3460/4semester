@@ -10,18 +10,27 @@ indsæt:
 og skriv npm install i terminalen for at hente/installere projektets dependencies
 Dette laver automatisk en package-lock.json, som stort set kun skal kigges i af rigtige developers til at version-kontrollere fejl
 
+ellers så brug npm install express
 
+så laver vi en app.js og indsætter:
 */
 
 
 
- //import Express
+ //import Express dependecy
 const express = require('express')
+//instantiate the library
 const app = express();
+
+//run the server, PUT THIS IN THE BOTTOM
+/* app.listen(8080, () => {
+    console.log("This is a callback function",8080);
+}
+*/
 
 // const app = require("express")()   //one liner.. dont use
 
-app.use(express.json()); // allows express-instance to parse JSON
+app.use(express.json()); // allows express-instance to body-parse JSON
 
 // takes an endpoint and a callback function
 app.get("/", (req, res) => { //request and response are given from express
