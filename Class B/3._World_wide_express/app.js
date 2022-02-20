@@ -4,6 +4,11 @@ const app = express();
 
 app.use(express.json());
 
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    next();
+  });
+
  const number = 123
 app.get("/", (req, res) => {
     res.send(`
@@ -22,6 +27,6 @@ app.get("/bored", (req,res) => {
 });
 
 
-app.listen(8080, () => {
+app.listen(9000, () => {
     console.log("The server is running", 8080);
 });

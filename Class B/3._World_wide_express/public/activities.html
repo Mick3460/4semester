@@ -6,15 +6,15 @@
     <title>Bored?</title>
 </head>
 <body>
-    <h1>Suggest me something to do...</h1>
+    <h1>Suggest me something to do... (bored API doesnt work lol..)</h1>
     <p id=activity>her</p>
     
     <script>
-        fetch("https://boredapi.com/api/activity", {mode: "no-cors"} )
+        fetch("https://www.boredapi.com/api/activity" )
         .then(response => response.json() )
         .then(data => {
             const activitySpan = document.getElementById("activity");
-            activitySpan.innerText = data.activity;
+            activitySpan.innerHTML = data.activity;
         });
     </script>
 
