@@ -13,6 +13,7 @@
         fetch("https://www.boredapi.com/api/activity" )
         .then(response => response.json() )
         .then(data => {
+            console.log(data);
             const activitySpan = document.getElementById("activity");
             activitySpan.innerHTML = data.activity;
         });
