@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>This is the index</title>
+
+    <style type="text/css">
+        #container {
+            margin : 0 auto;
+            width: 700px;
+            text-align: center;
+            margin-top: 100px;
+            border : black dashed 1px;
+            font-family: sans-serif;
+            padding-bottom: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1>A random Date object displayed: </h1>
+    <p id=dateObject>dateObject </p>
+    <p>So this exercise had me read up on a couple of math subjects</p>
+    <a href="https://www.rapidtables.com/convert/number/radians-to-degrees.html">
+        <p>Link to radians-to-degrees</p>
+    </a>
+    <a href="https://www.youtube.com/watch?v=1q7EEd6Huf0">
+        <p>This is the video and code used</p>
+    </a>
+    
+    <div id="container">
+        <h2>SHAMELESSLY STOLEN ANALOG CLOCK</h2>
+        <h3>Comments can be found in the code to explain vectors and canvas functions</h3>
+        <canvas id="clock" width="600" height="600"></canvas>
+    </div>
+
+<script type="text/javascript">
+
+let canvas, ctx;
+
+
+function draw () {
+    let time = (function () {
+            let midnight = new Date();
+            midnight.setHours(0);
+            midnight.setMinutes(0);
+            midnight.setSeconds(0);
+            midnight.setMilliseconds(0);
+            return Date.now() - midnight.getTime(); // GIVES MILLISECONDS SINCE MIDNIGHT (Date.now() give miliseconds since 1970)
+        })(), //.. function is called
+        hours = time / (60 * 60 * 1000),
+        minutes = hours * 60 % 60,
+        seconds = minutes * 60 % 60,
+        center = {x: canvas.width / 2, y: canvas.height / 2};
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height); // clears canvas in width * height pixels, from point 0,0
+
+    ctx.lineCap = 'round'; //Makes our lines more rounded, so they dont appear as squares.
+
+    //Methods are called (and they are hoisted, so it works :) )
+    secondHand();
+    minuteHand();
+    hourHand();
+    face();
+
+    
+    function face () {
+        // Border
+        ctx.lineWidth = 5;
+        ctx.strokeStyle = 'black';
+        ctx.beginPath();
+        ctx.arc(center.x, center.y, 140, 0, Math.PI * 2); //x,y,radius, startAngle, endAngle, antiClockwise if needed
+        // creates an arc/curve (used to create circles, or parts of circles)
+        ctx.stroke();
+
+        // Dashes to indicate seconds 
+        ctx.lineWidth = 3;
+        for (let i = 0; i < 60; i++) { //60 because of 60seconds..
+            let radius = 135, //radius slightly lower than total radius of the clock
+                length = 5; 
+            ctx.strokeStyle = 'rgba(0, 0, 0, 0.25)'; //slightly transparant black
+            if (i % 5 === 0) //make each 5min interval slightly less transparant and larger
+                radius -= length,
+                length *= 2,
+                ctx.strokeStyle = 'rgba(0, 0, 0, 0.5)';
+            let v = new Vector(radius, Math.PI * 2 * (i / 60) - Math.PI / 2); //pixels, angle ofc vector from center
+            // - PI / 2 = -90 degrees.. PI * 2 = 360 degrees.
+            //360 * x/60 minutes. So it points from 1 to 60 minutes on a clock
+            ctx.beginPath();
+            ctx.moveTo(v.getX() + center.x, v.getY() + center.y); //move start point to
+            v.setMag(radius + length); //define vector magnitude
+            ctx.lineTo(v.getX() + center.x, v.getY() + center.y);
+            ctx.stroke();
+        }
+
+        // Numbers
+        ctx.font = '18px Noto Sans';
+        ctx.fillStyle = 'black';
+        ctx.textAlign = 'center'; //aligns text so it looks better
+        ctx.textBaseline = 'middle'; //aligns text so it looks better
+        for (let i = 1; i <= 12; i++) { //for each number
+            let v = new Vector(113, Math.PI * 2 * (i / 12) - Math.PI / 2); //(pixels, angle)
+            /*
+            PI*2 *(12/12) points to 3 o clock, so we minus pi/2 to turn it 90 degrees left
+            */
+            ctx.fillText(i, v.getX() + center.x, v.getY() + center.y); //(text, x-coord, y-coord)
+        }
+
+        // Center button      ... basicly draws a button at 3,75radius out and goes in a circle
+        ctx.beginPath();
+        ctx.arc(center.x, center.y, 3.75, 0, Math.PI * 2);
+        ctx.fillStyle = 'white'; //makes it white in the middle :) very cool
+        ctx.strokeStyle = 'black';
+        ctx.lineWidth = 2.5;
+        ctx.fill();
+        ctx.stroke();
+    }
+    //Shows the hand which tells the seconds
+    function secondHand () {
+        ctx.lineWidth = 1.5; //defines the width of line
+        ctx.strokeStyle = 'black'; //defines the color of the line
+        ctx.beginPath(); //start drawing
+        let a = Math.PI * 2 * (seconds / 60) - Math.PI / 2; //PI*2 is a full circle in radians.
+        // -PI/2 because straight right is 0 in our Canvas, but we want 0 to be straight up.
+        let v = new Vector(95, a); //95 pixels long and with the angle given ^
+        let v2 = new Vector(-20, a); //-20 magnitude, so it's -20 opposite of the second-hand
+        ctx.moveTo(v2.getX() + center.x, v2.getY() + center.y);//Moves the pointer to given coordinate, center.x and center.y
+        ctx.lineTo(v.getX() + center.x, v.getY() + center.y);//moves a line to given coordinates, 
+        // here we add the vectors direction onto our center in the clock
+        ctx.stroke(); //draw the line
+    }
+
+    //shows the hand that tells the minutes
+    function minuteHand () {
+        ctx.lineWidth = 4;
+        ctx.strokeStyle = 'black';
+        ctx.beginPath();
+        let a = Math.PI * 2 * (minutes / 60) - Math.PI / 2; //60 minutes,
+        let v = new Vector(95, a);
+        ctx.moveTo(center.x, center.y); 
+        ctx.lineTo(v.getX() + center.x, v.getY() + center.y); 
+        ctx.stroke(); 
+    }
+
+    function hourHand () {
+        ctx.lineWidth = 4;
+        ctx.strokeStyle = 'black';
+        ctx.beginPath();
+        let a = Math.PI * 2 * (hours / 12) - Math.PI / 2; //there are 12 hours.. so ? not explained lol
+        let v = new Vector(60, a);
+        ctx.moveTo(center.x, center.y);
+        ctx.lineTo(v.getX() + center.x, v.getY() + center.y);
+        ctx.stroke();
+    }
+}
+
+function init () {
+    canvas = document.getElementById('clock');
+    canvas.width = canvas.height = 300;
+    ctx = canvas.getContext('2d'); // The getContext() is a built-in HTML object, with properties and methods for drawing:
+
+    setInterval(draw, 10);
+}
+
+init();
+
+
+/* ***************************************
+MATH I DON'T GET LOL
+
+**************************************** */
+function Vector (magnitude, angle) {
+    var m, a;
+
+    this.getX = function () {
+        return m * Math.cos(a);
+    };
+
+    this.setX = function (x) {
+        var y = m * Math.sin(a);
+        m = Math.sqrt((x * x) + (y * y));
+        a = Math.atan2(y, x);
+    };
+
+    this.getY = function () {
+        return m * Math.sin(a);
+    };
+
+    this.setY = function (y) {
+        var x = m * Math.cos(a);
+        m = Math.sqrt((x * x) + (y * y));
+        a = Math.atan2(y, x);
+    };
+
+    this.getMag = function () {
+        return m;
+    };
+
+    this.setMag = function (magnitude) {
+        m = magnitude;
+    };
+
+    this.getAngle = function () {
+        return a;
+    };
+
+    this.setAngle = function (angle) {
+        a = angle;
+    };
+
+    this.add = function (v) {
+        return Vector.add(this, v);
+    };
+
+    this.subtract = function (v) {
+        return Vector.subtract(this, v);
+    };
+
+    this.setMag(magnitude);
+    this.setAngle(angle);
+}
+
+Vector.rectangular = function (x, y) {
+    var m = Math.sqrt(x * x + y * y),
+        a = Math.atan2(y, x);
+    return new Vector(m, a);
+};
+
+Vector.polar = function (m, a) {
+    return new Vector(m, a);
+};
+
+Vector.add = function (v1, v2) {
+    return Vector.rectangular(v1.getX() + v2.getX(), v1.getY() + v2.getY());
+};
+
+Vector.subtract = function (v1, v2) {
+    return Vector.rectangular(v1.getX() - v2.getX(), v1.getY() - v2.getY());
+};
+
+
+ 
+    function clockMethod () {
+            const clockPTag = document.getElementById("dateObject");
+            clockPTag.innerText = Date();
+    }
+    clockMethod();
+ 
+
+
+                /*
+        fetch("https://www.boredapi.com/api/activity" )
+        .then(response => response.json() )
+        .then(data => {
+            console.log(data);
+            const activitySpan = document.getElementById("activity");
+            activitySpan.innerHTML = data.activity;
+        });
+        */
+    </script>
+    
+</body>
+</html>
+

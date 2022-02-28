@@ -19,11 +19,13 @@ LAD VÆRE AT GØRE DETTE:         const array = []
     Use forEach if you just need to iterate
     Use map when you need immutable data structures
 */
+
 const discountedPhones = smartPhones.map(smartPhone => {
-    smartPhone.price -= 500
-    return smartPhone
+    return {...smartPhone, price:  smartPhone.price - 500 };
 });
-//console.log(discountedPhones);
+
+console.log(discountedPhones);
+console.log("TEEEST");
 console.log(smartPhones);
 
 //remove phones above 4000
