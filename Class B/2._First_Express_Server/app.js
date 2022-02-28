@@ -3,7 +3,10 @@
 const express = require('express')
 const app = express();
 
-app.use(express.json()); // allow to parse JSON
+app.use(express.json()); // allow to parse bodies as JSON.. 
+    //IF THE REQ.BODY IS UNDEFINED, IT'S BECAUSE YOU CANT READ JSON
+    //THIS IS BECAUSE OF THE OSI MODEL (NET WORKING, LÆS OM BIT STREAMS OG OMSKRIVNINGEN)
+    //VI KAN OGSÅ FORTÆLLE KODEN AT DET SKAL VÆRE JSON MED HEADERS, CONTENT-TYPE: JSON (eller noget)
 
 //
 // EXERCISE / HOMEWORK 
@@ -28,7 +31,7 @@ beerArray.forEach(beer => {
 //assigns ID and updates highest ID number
 function assignId () {
     const theNewId = highestId
-    highestId +=1
+    highestId +=1   // kunne bruge ++Number for at incremente FØR den bruges. det er irrelevant her, men bare noter.
     return theNewId
 }
 
@@ -69,20 +72,20 @@ app.put("/beers/:beerId",(req,res) => {
 
 //PATCH
 app.patch("/beers/:beerId",(req,res) => {
-    const targetId = parseFloat(req.params.beerId)
-    beerArray.forEach(beer => {
-        if (beer.id === targetId){
-            if (beer.name !== req.body.name && req.body.name !== undefined){
-                beer.name = req.body.name
-            }
-            if (beer.age !== req.body.age && req.body.age !== undefined){
-                console.log("just an example of how to do it with multiple key-value-pairs");
-            }
-        }
-        
-    });
+    //beers.findIndex(predicate) takes in a predicate
+    //beers.indexOf({}) takes in a object - NOT THE RIGHT CHOICE
 
-    res.send(beerArray);
+    const foundBeerIndex = beerArray.findIndex(beer => beer.id === Number(req.params.id));
+    //Using Number() instead of parse to make sure it's a "clean" number, since parseInt(123asd2) would return 123 only.
+    
+    if (foundBeerIndex !== -1){
+    const foundBeer = beerArray[foundBeerIndex];
+    const beerToUpdate = req.body;
+    const updatedBeer = {...foundBeer, ...beerToUpdate, id: foundBeer.id};
+    res.send({ data: updatedBeer});
+    } else {
+        res.status(404).send({}) // ALWAYS PUT FAIL-SAFE-DEFAULTS IN ELSE-STATEMENTS
+    }
 })
 
 //DELETE
