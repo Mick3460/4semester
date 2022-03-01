@@ -20,10 +20,8 @@ app.get("/", (req,res) => {
 
 app.get("/welcome", (req, res) => {
     res.send(`
-    <h1> WELCOME ${number}</h1>
-    <h2> LOOOL </h2>
-    
-    `);
+    <h1> WELCOME ${req.params.name}</h1>
+     `);
 });
 
 //The __dirname in a node script returns the path of the folder where the current JavaScript file resides.
