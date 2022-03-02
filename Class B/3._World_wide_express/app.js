@@ -6,13 +6,36 @@ const app = express();
 //without this feature, the app.js and database documents could potentially be open for the client.
 app.use(express.static("public"))
 
+
+//importing another js file and calling an exported method.
+const dinosaurs = require('./dinosaurs/dinosaurs.js')
+console.log(dinosaurs.calculateAmountOfCoolDinosaurs());
+
+//destructuring
+const { calculateAmountOfCoolDinosaurs} = require('./dinosaurs/dinosaurs.js');
+const { newRandomKey} = require('./dinosaurs/dinosaurs.js');
+
+//imports a file and logs it.. sinds
+            //console.log(require("./dinosaurs/dinosaurs.json"))
+//It looks for a file when using a filepath.. when using require('express') i can tell it isnt a path, and looks for a node module.
+//giving it a path makes it look outside of node modules...
+
+//Import the router
+const dinosaurRouter = require('./routers/dinosaurrouter.js')
+app.use(dinosaurRouter.router); // url: /calculatecooldinosaurs
+
+
+
 app.use(express.json());
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     next();
   });
+
  //__ delen i dirname er en TOTAL GLOBAL variable.
+
+ //this is a route  -v-  ... the ENDPOINT is the "/".  (or after the PORT, if one is defined)
 app.get("/", (req,res) => {
     res.sendFile(__dirname + "/public/frontpage/frontpage.html"); 
 }); // ^ ABSOLUTE PATH IS NEEDED, AND THIS IS COMPATIBLE ON ALL SYSTEMS
@@ -33,6 +56,11 @@ app.get("/bored", (req,res) => {
 });
 
 
-app.listen(9000, () => {
-    console.log("The server is running", 9000);
+
+//create fallback port, so npm start works, and we have the possibility to still use npm start SCRIPT
+const PORT = process.env.PORT || 9000
+
+
+app.listen(PORT, () => {
+    console.log("The server is running", PORT);
 });
