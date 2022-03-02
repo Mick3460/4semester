@@ -1,0 +1,39 @@
+<p>
+    Server side rendering is when your client requests a new page/route and <br>
+    the server builds it before sending the entire page, with the usual app.get().
+    This eliminates the need to execute JS code in the browser, and it also improves SEO,<br>
+    as the page can be crawled for it's content, with no worries of fetches being "late" or not working,<br>
+    because the entire page is loaded before being sent.
+    Also a bonus is that when sharing the page on social media, a snippet of the content can be shown.
+    <br>
+
+
+</p>
+<p class="code">
+const express = require('express');<br>
+const app = express();<br>
+const fs = require('fs'); //file system import<br>
+</p><p></p>No need for app.use(express.json()) because we aren't going to have JSON objects<br></p>
+<p class="code">app.use(express.static("public"));   //the public folder is open to the client.</p><br>
+
+Structural data, these individual parts are being read from our folders to build small components, to build a fully functioning HTML template.
+<p class="code">const header = fs.readFileSync("./public/components/header/header.html").toString(); <br>
+const nav = fs.readFileSync("./public/components/nav/nav.html").toString();<br>
+const footer = fs.readFileSync("./public/components/footer/footer.html").toString();</p>
+
+These variables are now bitestreams kept within a buffer, so we input .toString() to parse its content</p> <br>
+"A buffer can be thought of as an array of integers, which each represent a byte of data." <span><a href="https://nodejs.dev/learn/nodejs-buffers">Link to buffers</a></span><br><br>
+
+Constructing the frontpage:
+<p class="code">const frontpage = fs.readFileSync("./public/pages/frontpage/frontpage.html").toString();<br>
+const frontpagePage = header.replace("%%CSSPATH","./components/nav/global.css")+<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;  nav.replace("%%TITLE REPLACE","Title has been replaced")+frontpage+footer;<br>
+                        <br></p>
+
+<p>The last step is to write the GET method that sends our constructed page</p>
+<p class="code">app.get("/", (req,res) => {<br>
+    &nbsp;&nbsp;  res.send(frontpagePage)<br>
+})<br></p>>
+</p>
+
+<script src="./pages/serverSideRendering/serverSideRendering.js"></script>

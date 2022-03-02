@@ -1,0 +1,33 @@
+
+<h3>Using res.send to send html</h3>
+<p >When using the send() method, it's possible to send back plain html and have it rendered by the browser.<br>
+    <p class="code">app.get("/welcome", (req, res) => {<br>
+        &nbsp;&nbsp; &nbsp;res.send(`&lt;h1&gt;WELCOME ${req.params.name} &lt;/h1&gt; <br>
+        &nbsp; `);<br>
+    });</p>
+
+<h3>Enable the public folder</h3>
+<p>Building upon what we already know, we will now need a way for our server to be able to see local files within the app.<br>
+This can be done with:<br>
+<p class="code">app.use(express.static("public"))<br></p>
+Where we define the "static" folder to be the folder called public. This allows for usage of files inside of the folder.
+</p>
+
+<h3>Sending files instead of text</h3>
+<p>Now that we have certain files allowed, we can have templates and html files that can be sent back as a response.<br>
+We just have to alter the response.send() method to this.
+</p>
+<p class="code">res.sendFile(__dirname + "/public/frontpage/frontpage.html"); <br>
+
+</p>
+<p>To make the path compatible on all systems, use the absolute path within the app.<br>
+The __dirname in a node script returns the path of the folder where the current JavaScript file resides.<br>
+So basicly, dirname is the place where the project is being run from, and it is a global variable within the application, thanks to javascript.
+</p>
+
+
+
+
+
+
+<script src="./pages/wwExpress/wwExpress.js">  </script>

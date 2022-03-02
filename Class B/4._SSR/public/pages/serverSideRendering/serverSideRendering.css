@@ -1,7 +1,16 @@
-
-body{
-    background-color: bisque;
+body {
+    background-color: rgb(169, 248, 245);
 }
+
+.code{
+    font-weight: bold;
+    background-color: cadetblue;
+    opacity: 1;
+    width: fit-content;
+    padding: 5px;
+    
+}
+
 ul {
     list-style-type: none;
     margin: 0;

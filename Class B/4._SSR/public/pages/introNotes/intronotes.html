@@ -1,0 +1,100 @@
+<div id="container">
+    <h3>TYPE COERCION:</h3>
+    <p>When checking if a given variable is the same, we are used to using the logical operator == from java to check, if they are "the same". <br>
+    However, in javascript, we don't have a compiler to tell us if two given variables are the same type when writing the code.<br>
+    Therefore, if we want to make a hard check, to see if 2 and '2' are the same, we would be using ===<br>
+    This makes sure that the two "numbers" are actually both numbers, and not just a number and a parsed string.<br>
+    The strict equality === doesn't implicitly convert any of the values.</p>
+    
+    
+    <h3>STRINGS AND NUMBERS:</h3>
+    
+    <p>Parsing strings with numbers into floats or Numbers:
+    Whenever a number is returned as a string, convert it using 
+    Number(string) or parseFloat(string).
+    Using <p class="code">Number()</p> instead of parse to make sure it's a "clean" number, since parseInt(123asd2) would return 123 only.
+    </p>
+    
+    <p>Print a number with decimals with 
+        <p class="code">number.toFixed(amountOfDecimals)</p></p>
+    
+    <p>When using a string, you can get a character by it's index with:
+        <p class="code">string.charAt(index)</p></p>
+    
+    <p>If you want to replace a character or substring, you can use
+        <p class="code">string.replace("thingToReplace", "thingThatReplaces")</p></p>
+    
+
+
+
+<h3>OBJECTS:</h3>
+
+<p>If you wanna access a value by a key, you can use:
+    <p class="code">object.keyname</p></p>
+
+<p>When defining an object, use this syntax
+    <p class="code">myObject = { key: value, key: "value" }</p></p>
+
+<p>You can further increase the objects keyvalue pairs with
+    <p class="code">myObject.newKey = newValue;</p></p>
+
+<p>Or delete it with
+    <p class="code">delete myObject.key</p></p>
+
+<div>
+<h3>ARRAYS:</h3>
+
+<p>You can access arrays directly with indexes:
+    <p class="code">array[indexToAccess]</p></p>
+
+<p>If you need more objects in the array, add with with push
+    <p class="code">array.push( newObject    . or maybe {object in here} )</p></p>
+
+<p>Get the index of first occurrence of that value.
+    <p class="code">array.indexOf(thingToFind). Returns -1 if not found.</p></p>
+
+<p>If you want to add to an array on a specific spot, use splice. Splice can also remove.
+    <p class="code">array.splice(startIndex to insert/delete, how many things to replace, "stringToInsert")</p></p>
+
+<p>pop() can be used to remove the last in an array
+    <p class="code">array.pop()</p></p>
+
+<p>If you want to copy an array, either slice it, map it or use the spread operator.
+    <p class="code">newArray = array.slice( (optional start), (optional end) )<br>
+newArray = array.map ( x => x)<br>
+newArray = [...array]</p></p>
+
+<h3>FUNCTIONS:</h3>
+
+<p>Anonymous functions are nameless functions, such as
+    <p class="code">const variable = function (x,y) { return x+y }<br>
+const variable = (x,y) => {return x+y}<br>
+const variable = (x,y) => x+y    in oneliners</p></p>
+
+<p>Functions are hoisted when a script is run. This makes it possible for javascript to read and call methods that are declared further down in the script.</p>
+
+<p>When using functions, you can pass another function as an argument. This is called a callback function.
+such as:
+<p class="code">function someAction(anotherFunction, variable) { anotherFunction(variable)}</p>
+
+
+
+<h3>LOOPS:</h3>
+
+<p>When using loops in javascript, avoid for loops as it's errorprone because of int indexing.
+Furthermore, they are overly verbose and aren't functional. Luckily there are loop methods that solve these problems
+We are looking for a way to have immutable data, so avoid operating directly inside arrays.
+If you need to iterate and "throw away" the data, you can use a forEach.
+If you need immutable data structures or copies of arrays, use map (or spread operator)</p>
+
+
+<p class="code">const discountedPhones = smartPhones.map(smartPhone => {<br>
+    &nbsp;&nbsp;  return {...smartPhone, price:  smartPhone.price - 500 };
+});</p>
+
+<p>You can also filter out elements you dont want. filter() returns a new array, same goes for map.</p>
+
+<p class="code">const cheapPhones = smartPhones.filter(phone => phone.price <= 4000)</p>
+</div>
+
+<script src="./pages/intronotes/intronotes.js">  </script>

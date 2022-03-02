@@ -12,7 +12,6 @@ router.get("/amountofcooldinosaurs", (req,res) => {
     res.redirect("/calculatecooldinosaurs")
 })
 
-// localhost
 router.get("/coolestdinosaur", (req,res) => {
     if (req.query.cool === "yes"){
        return res.send({dinosaur: "Mosasaurus"})
