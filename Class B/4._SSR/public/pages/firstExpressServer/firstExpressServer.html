@@ -1,0 +1,49 @@
+
+<h3>Making your own Express server</h3>
+<p>When starting an Express server, install the express library.  (npm i express   or..)<br>
+Create package.json and insert {} into the file to make it a real json file.<br>
+insert the following before running <span style="font-weight: bold;">npm install</span><br></p>
+<p class="code">
+{<br>
+    "dependencies": {<br>
+        &nbsp;  "express": "4.17.2"<br>
+        &nbsp;&nbsp;    }<br>
+}</p>
+
+<p>After that, import Express into your app inside of app.js</p>
+
+<p class="code">const express = require('express')<br>
+const app = express();</p>
+
+<p>and insert the following in the bottom of app.js to make the server listen on a given port:</p>
+
+<p class="code">app.listen(8080,(error) => {<br>
+    console.log("Server is running on port", 8080);<br>
+});  //add a callback if wanted.</p>
+
+<p>This is a basic express setup. <br>
+Since this is a basic backend, we will be creating the following http requests:<br>
+GET, GET(id), POST, PUT, PATCH, DELETE</p>
+
+<h3>Reading JSON</h3>
+<p>We can predict that we are going to be sending JSON bodies, so we are going to need express.json()<br>
+express.json() allows for body parsing into json. <br>
+If we forgot this step, our request.bodies would be undefined(null) because it can't understand json yet.<br>
+This is because the data has been sent in a bitestream and hasn't been told how to be rewritten.<br>
+We could also get around this issue by using http headers, such as CONTENT-TYPE: 'application/json'</p>
+
+<h3>Sending data with GET requests</h3>
+<p>Also: How can I send data with a GET request?<br>
+    Path variable.. URL: beer/1<br>
+    query string.. URL: ?key=value&key2=value2<br>
+    url: kangaroofacts?cankick=true   could be a url.</p>
+
+<p style="font-weight: bold;">path variable</p>
+<p class="code">    
+app.get("/clientgreeting/:name", (req,res) => {<br>
+    &nbsp;&nbsp; res.send({greeting : `Hello there, ${req.params.name}... `})<br>
+}) </p>
+
+
+
+<script src="./pages/firstExpressServer/firstExpressServer.js">  </script>

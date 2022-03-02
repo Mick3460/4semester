@@ -1,0 +1,71 @@
+<p>
+    /////////////////////////THE REST IS COPY PASTED FROM ASSIGNMENT<br>
+/////////////////////////SOME CODE IS MISSING, AS IT IS IRRELEVANT FOR THE TOPIC IN QUESTION<br>
+<p class="code"><a href="https://github.com/Mick3460/4semester">Link to github</a></p>
+<br>
+//GET<br>
+app.get("/beers",(req,res) => {<br>
+    res.send(beerArray);<br>
+})<br>
+<br>
+//GET by id<br>
+//Here we see how to use the request's parameter to specify an ID.<br>
+app.get("/beers/:beerId",(req,res) => {<br>
+    const targetId = parseFloat(req.params.beerId)<br>
+    const foundBeer = beerArray[beerArray.findIndex( beer => beer.id === targetId)]<br>
+    foundBeer ? res.send({ data: foundBeer }) : res.status(204).send({});<br>
+})          //foundBeer would be FALSE if it was undefined.<br>
+<br>
+//POST and assign id<br>
+app.post("/beers",(req,res) => {<br>
+    const newBeer = {id: assignId(), name: req.body.name}<br>
+    <br>
+    beerArray.push(newBeer)<br>
+    res.send(newBeer);<br>
+})<br>
+<br>
+//PUT <br>
+app.put("/beers/:beerId",(req,res) => {<br>
+    <br>
+    //beers.findIndex(predicate) takes in a predicate<br>
+    //beers.indexOf({}) takes in a object - NOT THE RIGHT CHOICE<br>
+    const foundBeerIndex = beerArray.findIndex(beer => beer.id === Number(req.params.id));<br>
+    if (foundBeerIndex !== -1){<br>
+        const foundBeer = beerArray[foundBeerIndex];<br>
+        const beerToUpdate = req.body;<br>
+        const updatedBeer = {...beerToUpdate, id: foundBeer.id}<br>
+        res.send({data: updatedBeer})<br>
+    } else {<br>
+        res.status(404).send({}) // ALWAYS PUT FAIL-SAFE-DEFAULTS IN ELSE-STATEMENTS<br>
+    }<br>
+})<br>
+<br>
+//PATCH<br>
+app.patch("/beers/:beerId",(req,res) => {<br>
+    <br>
+    const foundBeerIndex = beerArray.findIndex(beer => beer.id === Number(req.params.id));<br>
+    <br>
+    if (foundBeerIndex !== -1){<br>
+        const foundBeer = beerArray[foundBeerIndex];<br>
+        const beerToUpdate = req.body;<br>
+        const updatedBeer = {...foundBeer, ...beerToUpdate, id: foundBeer.id};<br>
+        res.send({ data: updatedBeer});<br>
+    } else {<br>
+        res.status(404).send({}) // ALWAYS PUT FAIL-SAFE-DEFAULTS IN ELSE-STATEMENTS<br>
+    }<br>
+})<br>
+<br>
+//DELETE<br>
+app.delete("/beers/:beerId",(req,res) => {<br>
+    const targetId = parseFloat(req.params.beerId)<br>
+    const indexNumber = beerArray.findIndex( beer => beer.id === targetId)<br>
+    beerArray.splice(indexNumber,1)<br>
+    indexNumber === -1 ? res.status(204).send({}) : res.status(404).send({})<br>
+})<br>
+</p>
+
+
+
+
+
+<script src="./pages/expressBackendExample/expressBackendExample.js">  </script>

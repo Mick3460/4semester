@@ -1,0 +1,61 @@
+
+<p><h3>npm, nodemon, git and cross-env</h3>
+    <p class="code">npm init or npm init -y </p>
+    is used to initialize a new project, by setting up a npm package file. <br>
+    The -y is for agreeing to every default configuration for a quick setup. <br>
+</p><p>
+    <p class="code">npm install or npm i</p>
+    Is used to install already defined dependencies from the package.json file. <br>
+    If followed by a library name, it will install the latest/default version automatically within the project. SUCH AS nodemon:
+
+    <p><span><a href="https://www.npmjs.com/package/nodemon">Nodemon</a></span> is a tool we use while developing nodejs programs, as it help with refreshing the app, whenever a change is made. <br>
+    When installing it, do so globally, as you might need it for more projects - and it makes no sense to have inside the project.
+    <p class="code">npm install -g nodemon</p>
+    <p>Or maybe even install it as a development dependency (not sure if development environment will be covered here)</p>
+    <p class="code">npm install --save-dev nodemon</p>
+
+    </p>
+
+</p><p><br>
+    <h2><a href="https://www.freecodecamp.org/news/10-important-git-commands-that-every-developer-should-know/">Git commands</a></h2>
+    The following command is used to stage our local changes. We use -A to send ALL changes. <br>
+    <p class="code">git add -A  </p>
+    After that, you want to package the staged files prepare them to send it to the repository.<br>
+    <p class="code">git commit -m "the dash m is for creating a msg, and this is the msg" </p>
+    Now that the package is ready, you want to push it to the repository.<br>
+    <p class="code">git push </p>
+    And when you want to retrieve the repository, you will use pull<br>
+    <p class="code"> git pull </p>
+    
+</p><p>
+    Git clone is a command for downloading existing source code from a remote repository. It is used like this: <br>
+    <p class="code">git clone LINK-TO-REPOSITORY.GIT </p>
+
+</p><p>
+    We can use the git branch command for creating, listing and deleting branches.<br>
+    <p class="code">git branch &lt;branch-name&gt;  </p>
+    This will create a local branch. If you want to push into a remote repository, use the following command: <br>
+    <p class="code">git push -u &lt;remote&gt; &lt;branch-name&gt;  </p>
+    You can view branches with: <br>
+    <p class="code">git branch or git branch --list </p>
+    And delete one with <br>
+    <p class="code">git branch -d &lt;branch-name&gt; </p>
+
+    Git revert can be used to revert a commit make, but we need the hashcode of the commit. Therefore, we need to use this first:<br>
+    <p class="code">git log --oneline</p> 
+    This will show the hashcode of a commit, and we can use that code to revert like this: <br>
+    <p class="code">git revert HASHCODE</p> 
+    Whenever you've developed in a different branch and everything works, it might be time to merge it into the main development branch, or production.<br>
+    First, make sure you're in the branch you want to merge into. Move into the dev branch:
+    <p class="code">git checkout dev</p>
+    From here, you should first update the branch with pull or fetch. Then merge it:
+    <p class="code">git merge &lt;branch-name&gt; </p>
+
+    </p>
+    <h3><a href="https://www.npmjs.com/package/cross-env">cross-env</a></h3>
+    <p>
+    </p>
+
+
+
+<script src="./pages/gitcommands/gitcommands.js">  </script>
