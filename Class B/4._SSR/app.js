@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
-const fs = require('fs'); //file system import
+
+ 
 // no need for app.use(express.json()) because we aren't going to have json/data
 app.use(express.static("public"));   //the public folder is open/(sent?) to the client.
 
@@ -75,7 +76,11 @@ app.get("/terminalcommands",(req,res) =>{
     res.send(gitCommandsPage)
 })
 
-
+//ROUTER Example
+//Import the router
+const exampleRouter = require('./public/routers/routerExample/routerExample.js')
+app.use(exampleRouter.router); // url: /calculatecooldinosaurs
+//const {router} = require('./public/routers/routerExample/routerExample.js')
 
 
 
