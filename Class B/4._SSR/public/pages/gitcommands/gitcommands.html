@@ -54,8 +54,22 @@
     </p>
     <h3><a href="https://www.npmjs.com/package/cross-env">cross-env</a></h3>
     <p>When setting up scripts in your package.json, some commands wont function across every operating system, <br>
-        as MAC and Windows use two different terminals. To get around this issue, we can setup cross-env, that will
+        as MAC and Windows use two different terminals. To get around this issue, we can setup cross-env, that will<br>
+        ensure that scripts defined in our package.json can be run on every single terminal and/orcomputer.
+        When installing cross-env, you could go for a developer install like this:
     </p>
+    <p class="code">npm install --save-dev cross-env</p>
+    <p>This will add a devDependency to your package.json file that looks like this:</p>
+    <p class="code">   "devDependencies": {<br>
+        "cross-env": "^7.0.3"<br>
+      }</p>
+    <p>When this is installed into your project, and the abovementioned code is within your package.json <br>
+    you can add scripts that can be applied across all platforms, like this:</p>
+    <p class="code">"scripts": {<br>
+        "start-dev": "cross-env PORT=3000 nodemon app.js",<br>
+        "start": "node app.js"<br>
+      }</p>
+      <p>This command will make the command "npm start-dev" execute the given terminal command, that is "cross-env PORT=300...."</p>
 
 
 

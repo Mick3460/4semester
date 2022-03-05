@@ -8,7 +8,7 @@ const footer = fs.readFileSync("./public/components/footer/footer.html").toStrin
 
 //Routing page construction
 const routerpag = fs.readFileSync("./public/routers/routerexample/routerexample.html").toString();
-const routerPage = header.replace("%%CSSPATH","./components/nav/global.css")+
+const routerPage = header.replace("%%CSSPATH","./routers/routerExample/routerExample.css")+
                         nav.replace("%%TITLE REPLACE","Just a routing test")+routerpag+footer;
 
 router.get("/routertest", (req,res) => {
