@@ -2,6 +2,9 @@ body {
     background-image: url('../../backgroundPicture.jpg')
     
 }
+div div a {
+  text-decoration: none;
+}
 #routerContainer{
 width: 70%;
 height: 70%;
@@ -9,7 +12,7 @@ display: block;
 justify-content: center;
 align-items: center;
 margin: auto;
-display:flex
+display:flex;
 
 }
 #boxContainer{
@@ -37,7 +40,6 @@ display:flex
   align-items: center;
   justify-items: center;
   display: flex;
-  
 }
 div div a  :hover{
   background-color: rgb(21, 104, 199);
@@ -46,7 +48,6 @@ div div a  :hover{
   margin: 0 auto;
   background-color: rgba(0, 0, 0, 0.2);
   color: rgb(202, 141, 49);
-  
 }
 
 #container {
