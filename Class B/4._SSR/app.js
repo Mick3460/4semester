@@ -6,6 +6,7 @@ const app = express();
 app.use(express.static("public"));   //the public folder is open/(sent?) to the client.
 
 //Structural data
+const fs = require('fs'); //file system import
 const header = fs.readFileSync("./public/components/header/header.html").toString();
 const nav = fs.readFileSync("./public/components/nav/nav.html").toString(); // nav is now a bitestream (maybe just a buffer? what is a buffer?), so we input .tostring
 const footer = fs.readFileSync("./public/components/footer/footer.html").toString();
