@@ -56,6 +56,51 @@ app.get("/bored", (req,res) => {
 });
 
 
+//////////// FETCH
+
+//DIFFERENT FROM THE BROWSER VERSION
+const myfetch = require('node-fetch')
+/*
+    Install node-fetch , version prior to 3.0.0.. 2.6.7
+    create an endpont called /proxy
+    fetch from googles homepage
+
+    send the page as a response
+
+    Bonus: use async await
+    måske... npm install node-fetch@2
+*/
+
+async function getPage () {
+    const response = await myfetch('https://www.google.dk/')
+    const responseData = await response.text()
+    return responseData
+}
+
+//husk at gøre get metoden async, da der er et fetch kald derinde.
+app.get("/proxy", async (req,res) => {
+    //const response = getPage()    
+    const response = await myfetch('https://www.google.dk/');
+    const homepage = await response.text();
+    res.send(homepage)
+
+});
+
+    /* UDEN ASYNC
+    myfetch('https://www.google.dk/')
+    .then(response => response.text())
+    .then(data => res.send(data))
+    */
+
+
+
+
+
+
+
+
+
+
 
 //create fallback port, so npm start works, and we have the possibility to still use npm start SCRIPT
 const PORT = process.env.PORT || 9000

@@ -4,15 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./frontpage/frontpage.css">
-    <title>Document</title>
+    <title>Dinosaurs</title>
 </head>
 <body>
     <h1 id="topHeader">Dinosaurs</h1>
 
-    <script src="./frontpage/frontpage.js">  </script>
+    <div>
+        <h3>Amount of cool dinosaurs</h3>
+        <p id="cool-dinosaurs"></p>
+    </div>
+
     <script>
-        setTimeout( () => {
-            window.location.href = "/bored" //dynamic redirection... this is also client redirection.
-        }, 2000)
+       
+       fetch('/amountofcooldinosaurs') //localhost is not needed, as it is on the same origin.. using Svelt, we would need to define it again though..
+        .then(response => response.json())
+        .then(data => document.getElementById("cool-dinosaurs").innerHTML = data.data);
+
     </script>
+
+
+    <script src="./frontpage/frontpage.js">  </script>
+   
 </html>
