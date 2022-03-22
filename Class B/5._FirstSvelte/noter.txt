@@ -4,3 +4,16 @@ npm install
 npm run dev
 
 CDN = Content delivery network
+
+script: build gør:
+Det compiler ind i public hvor den bygger en build folder.  "-c" betyder compile 
+
+Babel er en transpiler. Det compiler på tværs af programmerings sprog, eller evt fra en java version til en anden java version.
+
+"rollup" transpiler og.. ?
+
+dev caller på start, og holder øje med ændringer i filerne.
+
+
+
+ "start": "sirv public --no-clear --single"   til singlepage applications
