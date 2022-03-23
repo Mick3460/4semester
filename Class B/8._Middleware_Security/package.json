@@ -1,0 +1,19 @@
+{
+  "name": "8._middleware_security",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "express": "^4.17.3",
+    "express-rate-limit": "^6.3.0",
+    "express-session": "^1.17.2",
+    "helmet": "^5.0.2"
+  }
+}
