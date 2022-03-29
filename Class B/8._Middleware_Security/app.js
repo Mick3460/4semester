@@ -47,7 +47,7 @@ app.use(session({
     secret: 'keyboard cat',
     resave: false, //Forces the session to be saved back to the session store, even if the session was never modified during the request. 
     saveUninitialized: true, //Forces a session that is "uninitialized" to be saved to the store. A session is uninitialized when it is new but not modified. 
-    cookie: { secure: false } //secure true only works if the server is https. This aint.
+    cookie: { secure: false } //secure true only works if the server is https. This aint it chief.
   }))
 
 import planetsRouter from './routers/planets.js'; //Here planetsRouter is the name we wish to give the const from the default export
@@ -119,8 +119,9 @@ If the wildcard is in the top, our next() functions will hit that before any oth
         console.log("Running on PORT:",PORT);
     });
     
-                            /*
+                            /*   import path from "path";
+                                
                             app.get("/clothes", (req,res) => {
-                                res.sendFile(__dirname + "/public/clothes.html")
+                                res.sendFile(path.resolve("public/clothes.html"));   // __dirname VIRKER IKKE MED type:module
                             })
                             */

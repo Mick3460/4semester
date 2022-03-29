@@ -24,8 +24,6 @@ const { newRandomKey} = require('./dinosaurs/dinosaurs.js');
 const dinosaurRouter = require('./routers/dinosaurrouter.js')
 app.use(dinosaurRouter.router); // url: /calculatecooldinosaurs
 
-
-
 app.use(express.json());
 
 app.use((req, res, next) => {
@@ -71,15 +69,19 @@ const myfetch = require('node-fetch')
     måske... npm install node-fetch@2
 */
 
+
+/* Udkommenteret, da det står lige nedenunder i app.get("/proxy")
 async function getPage () {
     const response = await myfetch('https://www.google.dk/')
     const responseData = await response.text()
     return responseData
 }
+*/
+
 
 //husk at gøre get metoden async, da der er et fetch kald derinde.
 app.get("/proxy", async (req,res) => {
-    //const response = getPage()    
+    
     const response = await myfetch('https://www.google.dk/');
     const homepage = await response.text();
     res.send(homepage)
