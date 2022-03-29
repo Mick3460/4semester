@@ -57,7 +57,6 @@ app.post("/beers",(req,res) => {
 
 //PUT 
 app.put("/beers/:beerId",(req,res) => {
-
     //beers.findIndex(predicate) takes in a predicate
     //beers.indexOf({}) takes in a object - NOT THE RIGHT CHOICE
     const foundBeerIndex = beerArray.findIndex(beer => beer.id === Number(req.params.id));
@@ -88,10 +87,11 @@ app.patch("/beers/:beerId",(req,res) => {
 
 //DELETE
 app.delete("/beers/:beerId",(req,res) => {
-    const targetId = parseFloat(req.params.beerId)
+    const targetId = Number(req.params.beerId)
     const indexNumber = beerArray.findIndex( beer => beer.id === targetId)
     beerArray.splice(indexNumber,1)
-    indexNumber === -1 ? res.status(204).send({}) : res.status(404).send({})
+    //er det her rigtigt? -v- er det ikke === 1 ? 
+    indexNumber === -1 ? res.status(204).send({}) : res.status(404).send({}) 
 })
 
 
