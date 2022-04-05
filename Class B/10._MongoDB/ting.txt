@@ -1,0 +1,57 @@
+SQL -> MongoDB
+
+Tables -> Collections.
+
+DER ER INGEN PRIMARY KEY I MONGODB, DET SKAL HÅNDTERES AF PROGRAMMØREN
+MongoDB er en document database. Ingen relations. No fixed Schema unlike SQL (?)
+MongoDB er godt til hurtige prototyper, fordi man ikke behøver planlægge tables forud, men bare kan YOLOe den.
+
+MongoDB lægger ansvaret på udvikleren til at skrive ordentlige queries, hvor MySQL har mange constraint til at stoppe fejl..
+
+Schemaless betyder at man kan gemme objekter som bare lyst til, så disse to kunne sagtens ligge i samme tabel:
+{
+    name: "LOL"
+}
+,
+{
+    name: 5
+}....
+
+En Daemon er et program som kører i baggrunden, og er ikke et program man selv styrer...
+Daemons findes ikke rigtigt i windows...
+En Daemons fil ender som regel med "d", så man kan se det er en daemon fil.
+mongoD.exe kører database serveren i baggrunden.
+
+for at starte mongoDB, så skla man gå ind under C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+og derinde skal man skrive ./mongod
+Vi skal dog specificere hvor vores database skal gemme dataen.. Det gør vi ved at lave mappen "data" i vores drev (root)
+og så laver vi også mappen "db" inde i den mappe.
+
+Når den er oppe og køre, så kan vi nu åbne en ny terminal i bin mappen og skrive "./mongo" for at køre mongo's shell.
+
+med kommandoen "show dbs" får vi vist alle databaser. 
+Med "use DATABASENAME" så går man ind i den database, og hvis den ikke findes, så laves den.
+
+db.createCollection("LALALA") 
+
+C - insert
+R - find
+U - update
+D - deleteOne / deleteMany (eller remove({det samme som deleteMany}))
+
+db.collectioname giver os adgang ind i collectionen.
+db.tutorials.insert( { channelName: "How to basics" })
+db.tutorials.find()    gives me the entities in the collection
+db.tutorials.insert( { channelName: "How to basics 2", id:2 })
+db.tutorials.find({id:2})   finder alle med id:2
+db.tutorials.deleteOne( {channelName: "How to basics 2"})    DEN DELETER KUN ÉN!
+db.tutorials.deleteMany( {channelName: "How to basics 2"})    DEN DELETER ALLE!
+db.tutorials.update({WHERE CLAUSE},{updateWith})
+db.tutorials.update({ channelName: "How to basics 2"},{ $set: {viewCounter: 12345} })   $set skal have en object som følger efter, da det er et key value pair.
+db.tutorials.find({ratings: { thumbsUp: {$gt: 32}, thumbsDown: 123  }) //virker ikke så godt, NVM LOL     //$ er aggregation funktioner.. gt er greater than
+
+
+
+DER ER INGEN PRIMARY KEY I MONGODB, DET SKAL HÅNDTERES AF PROGRAMMØREN
+
+

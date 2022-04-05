@@ -1,0 +1,32 @@
+npm i sqlite er kørt i cd ./server
+npm i mysql er kort i server.
+
+
+DOWNLOAD MYSQL SHELL!!!!!!!!
+mysql -uroot -p
+password = password
+CREATE DATABASE football;
+
+to give access to user, use GRANT PRIVILEGES in MySQL.. The syntax is different from each version, so double check.
+
+use football
+DESCRIBE players:
+
+
+
+SOM DET FØRSTE I DIT PROJEKT!!!!! npm i dotenv
+https://www.npmjs.com/package/dotenv
+
+bruges til at lave en env fil som holder env values.
+ selv lav filen som hedder ".env"
+ Den bliveri kke pushed, den er allerede i gitignore.
+
+ læs lidt på hvad DB migrations er.. 
+
+ ORM bruges fordi det er mindre error prone og det er pænere kode generelt, men det tager tid at lære... 
+ RAW SQL er helt fint, så no stress.
+
+ Download MongoDB, behøver ikke downloade Compass, for der findes bedre GUI.
+ 
+
+
