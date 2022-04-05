@@ -7,6 +7,10 @@ if(isInDeleteMode) {
     db.exec(`DROP TABLE IF EXISTS players;`)
 }
 
+/* ACCESS THE DATABASE LIKE THIS IN THE TEMRINAL:
+sqlite3 ./football.db
+select * from TABLENAME
+*/
 
 
 //AUTO_INCREMENT og INT skal laves om til INTEGER (når det er en primary key) og AUTOINCREMENT istedet.
