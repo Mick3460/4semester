@@ -1,4 +1,4 @@
-import sqlite3 from 'sqlite3'
+import sqlite3 from 'sqlite3' // it is a simple single file relational database
 import { open } from 'sqlite'
 
 

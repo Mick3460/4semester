@@ -22,21 +22,17 @@ import Monkee from "./Monkee.svelte";
 {/each}
 
 <Monkee monkey={monkey}/>
-    </div>
+
+</div>
     <div id="test">
         <div id="trunk">
-        <button style="background-color:darkred"
-        on:click={pickApple}>Click me</button> 
-        <!-- pickApple isnt called, becasue this has to be a reference (callback). 
-            We dont want it to be evaluated when the page is loaded.-->
+            <button style="background-color:darkred"
+                on:click={pickApple}>Click me</button> 
+                <!-- pickApple isnt called, becasue this has to be a reference (callback). 
+                We dont want it to be evaluated when the page is loaded.-->
         </div>
     </div>
 </div>
-
-
-
-
-
 
 <style>
     #entireTree {
