@@ -2,7 +2,7 @@ npm i sqlite er kørt i cd ./server
 npm i mysql er kort i server.
 
 
-DOWNLOAD MYSQL SHELL!!!!!!!!
+DOWNLOAD MYSQL SHELL!!!!!!!! done
 mysql -uroot -p
 password = password
 CREATE DATABASE football;
@@ -26,6 +26,9 @@ bruges til at lave en env fil som holder env values.
  ORM bruges fordi det er mindre error prone og det er pænere kode generelt, men det tager tid at lære... 
  RAW SQL er helt fint, så no stress.
 
+
+
+for 10._ ->
  Download MongoDB, behøver ikke downloade Compass, for der findes bedre GUI.
  
 

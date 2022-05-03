@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <title>Colors</title>
+</head>
+<body>
+    <input id="color-picker" type="color">
+    
+    <script src="socket.io/socket.io.js">//we want socket library in our HTML
+    // Can be served in several ways, maybe use a CDN
+    </script>
+    <script>
+
+        const socket = io(); //doesnt need an URL because it's served on the same host.
+
+        //log the color when the color-picker changes
+        const colorPicker = document.getElementById("color-picker")
+
+        socket.on("please change the color", ({data}) => {
+            document.body.style.backgroundColor = data
+        })
+
+        colorPicker.addEventListener("change",(event) => {
+            //console.log(event.target.value);
+            socket.emit("a client changed the color",{data: event.target.value})
+        })
+
+    </script>
+</body>
+</html>
