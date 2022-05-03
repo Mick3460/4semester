@@ -51,7 +51,7 @@ function somethingGoodSomethingBad() {
 somethingGoodSomethingBad()
 .then(message => console.log(message));
 
-//With parathesis we are making an IIFE immidiately invoked fucntion expression
+//With parathesis we are making an IIFE, immidiately invoked fucntion expression
 //This removes the delay that occurs because of housting and declarations whenever the file/Script is run.
 (async function callMyCustomPromise() {
     

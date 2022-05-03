@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GraphQL page</title>
+</head>
+<body>
+    <div id="key"> </div>
+    <div id="value"> </div>
+
+
+    <script>
+        fetch("/graphql",{
+            method: "POST",
+            headers: {
+                 "Content-Type": "application/json; charset=utf-8"
+                },
+                body: JSON.stringify({
+                    query: `query {
+                                hello
+                            }`
+                })
+            }).then(response => response.json())
+            .then(result => {
+                console.log(result);
+                document.getElementById("key").innerText = Object.keys(result.data) + " key"
+                document.getElementById("value").innerText = result.data.hello + " value"
+            })
+
+    </script>
+</body>
+</html>

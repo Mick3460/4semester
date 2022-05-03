@@ -1,6 +1,6 @@
 import dotenv from "dotenv"
 dotenv.config(); //it looks for and reads the .env file
-import mysql from "mysql"
+import mysql from 'mysql2/promise'
 
 //creates an object with these key values.
 const connection = mysql.createConnection({

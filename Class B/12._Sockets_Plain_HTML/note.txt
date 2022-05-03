@@ -1,0 +1,10 @@
+Websockets:
+The server now has the ability to send (req or res?) to the client.
+
+Emit - mouth
+On - ear
+function - brain.
+
+
+
+

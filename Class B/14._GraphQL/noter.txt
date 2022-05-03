@@ -1,0 +1,59 @@
+Fjerner overfetching ved at kunne specificerer attributer man vil bruge ved sit DB kald.
+
+
+
+# Type queries into this side of the screen, and you will 
+# see intelligent typeaheads aware of the current GraphQL type schema, 
+# live syntax, and validation errors highlighted within the text.
+
+# We'll get you started with a simple query showing your username!
+query ($mickUser: String!) { 
+ mickUser: user(login:$mickUser) {
+  watching (last:10) {
+    edges {
+      node {
+        name
+      }
+    }
+  }
+  ...UserFollowing
+	}
+  bobUser: user(login:"bob"){
+    ...UserFollowing
+  }
+  
+}
+
+fragment UserFollowing on User{
+  following(last:5) {
+      edges {
+        node {
+          name
+        }
+      }
+    }
+}
+
+#######################
+#######################
+#######################
+#######################
+#######################
+
+mutation {
+  addMovie(title:"Lol") {
+    id
+    title
+  }
+}
+
+
+query {
+  whateverYouWant {
+    specifyAttribute
+  }
+}
+
+
+
+
