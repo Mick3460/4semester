@@ -42,7 +42,7 @@ D - deleteOne / deleteMany (eller remove({det samme som deleteMany}))
 db.collectioname giver os adgang ind i collectionen.
 db.tutorials.insert( { channelName: "How to basics" })
 db.tutorials.find()    gives me the entities in the collection
-db.tutorials.insert( { channelName: "How to basics 2", id:2 })
+db.tutorials.insertOne( { channelName: "How to basics 2", id:2 })
 db.tutorials.find({id:2})   finder alle med id:2
 db.tutorials.deleteOne( {channelName: "How to basics 2"})    DEN DELETER KUN ÉN!
 db.tutorials.deleteMany( {channelName: "How to basics 2"})    DEN DELETER ALLE!
@@ -55,3 +55,5 @@ db.tutorials.find({ratings: { thumbsUp: {$gt: 32}, thumbsDown: 123  }) //virker 
 DER ER INGEN PRIMARY KEY I MONGODB, DET SKAL HÅNDTERES AF PROGRAMMØREN
 
 
+åben mongoD på skrivebordet eller inde i C/programmer/mongoDB og find den der i bin..
+åben mongoSH og tryk enter. show dbs og show collections virker. alt er case sensitive.
